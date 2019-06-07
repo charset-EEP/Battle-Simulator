@@ -5,19 +5,10 @@
 typedef struct{
 char name[30];
 int life;
-int atack;
-int sp;
-int atack1;
-char Natack1[30];
-int atack2;
-char Natack2[30];
-int atack3;
-char Natack3[30];
-int atack4;
-char Natack4[30];
 }monster;
 
 typedef struct{
+char name[30];
 int damage;
 char type[30];
 int usages;
@@ -27,23 +18,15 @@ char efect[30];
 }atacks;
 
 void atack(monster *one,monster *two,int atak){
-(*one).atack=atak;
-if((*one).sp>0){
-(*one).sp=(*one).sp-5;
-(*two).life =(*two).life - (*one).atack;
-printf("%s deals %d damage in %s.\n",(*one).name,(*one).atack,(*two).name);
-}
+(*two).life =(*two).life - atak;
+printf("%s deals %d damage in %s.\n",(*one).name,atak,(*two).name);
 }
 void status(monster two){
-
     if(two.life<=0){
     printf("#%s        DEAD\n",two.name);
     printf("HP:DEAD   ");}else{
     printf("#%s        normal\n",two.name);
     printf("HP:%d   ",two.life);}
-    if(two.sp<=0){
-    printf("SP:No more SP   ");}else{
-    printf("SP:%d   ",two.sp);}
     printf("\n");
     }
 void menu(monster one,monster two,int *battle){
@@ -74,48 +57,48 @@ void menu(monster one,monster two,int *battle){
     printf("\t4-Run\n:");
     }
 }
-void menuBattle(monster one,monster two){
+void menuBattle(monster one,monster two,atacks atk1,atacks atk2,atacks atk3,atacks atk4){
     status(two);
-    printf("\n\n\n\n\n\n\n\n\n\n\n\n\n");
+    printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     status(one);
     printf("What you gonna do?\n");
-    printf("1-%s",one.Natack1);
-    printf("\t 2-%s\n",one.Natack2);
-    printf("3-%s",one.Natack3);
-    printf("\t 4-%s\n:",one.Natack4);
+    printf("1-%s",atk1.name);
+    printf("\t 2-%s\n",atk2.name);
+    printf("3-%s",atk3.name);
+    printf("\t 4-%s\n:",atk4.name);
     }
-int chooseATK(monster one,int choose){
+int chooseATK(atacks atk1,atacks atk2,atacks atk3,atacks atk4,int choose){
     switch(choose){
     case 1:
-    return one.atack1;
+    return atk1.damage;
     break;
     case 2:
-    return one.atack2;
+    return atk2.damage;
     break;
     case 3:
-    return one.atack3;
+    return atk3.damage;
     break;
     case 4:
-    return one.atack4;
+    return atk4.damage;
     break;
     default:
-    return one.atack;
+    return 10;
     break;
     }
     }
-void nameATK(monster one,int choose){
+void nameATK(monster one,atacks atk1,atacks atk2,atacks atk3,atacks atk4,int choose){
     switch(choose){
     case 1:
-    printf("%s used %s,  ",one.name,one.Natack1);
+    printf("%s used %s,  ",one.name,atk1.name);
     break;
     case 2:
-    printf("%s used %s,  ",one.name,one.Natack2);
+    printf("%s used %s,  ",one.name,atk2.name);
     break;
     case 3:
-    printf("%s used %s,  ",one.name,one.Natack3);
+    printf("%s used %s,  ",one.name,atk3.name);
     break;
     case 4:
-    printf("%s used %s,  ",one.name,one.Natack4);
+    printf("%s used %s,  ",one.name,atk4.name);
     break;
     default:
     printf("%s used body,  ",one.name);
@@ -133,42 +116,53 @@ int main()
     char one_name[]="Charmander";
     strcpy(one.name,one_name);
     one.life=200;
-    one.atack=10;
-    one.sp=50;
     monster *ptr1=&one;
+
+    atacks one_atk1;
+    atacks one_atk2;
+    atacks one_atk3;
+    atacks one_atk4;
+
     char at1[]="Scrach";
+    strcpy(one_atk1.name,at1);
+    one_atk1.damage=10;
+    one_atk1.usages=10;
+
     char at2[]="Growl";
+    strcpy(one_atk2.name,at2);
+    one_atk2.damage=20;
+    one_atk1.usages=5;
+
     char at3[]="Ember";
+    strcpy(one_atk3.name,at3);
+    one_atk3.damage=30;
+    one_atk1.usages=3;
+
     char at4[]="Tail Whip";
-    strcpy(one.Natack1,at1);
-    strcpy(one.Natack2,at2);
-    strcpy(one.Natack3,at3);
-    strcpy(one.Natack4,at4);
-    one.atack1=20;
-    one.atack2=30;
-    one.atack3=40;
-    one.atack4=50;
+    strcpy(one_atk4.name,at4);
+    one_atk4.damage=40;
+    one_atk1.usages=2;
 
     //Pokemon 2
     monster two;
     char two_name[]="Bulbassaur";
     strcpy(two.name,two_name);
     two.life=200;
-    two.atack=10;
-    two.sp=50;
+
+
     monster *ptr2=&two;
     char at12[]="Scrach";
     char at22[]="Growl";
     char at32[]="Vine Whipe";
     char at42[]="Solarbean";
-    strcpy(two.Natack1,at12);
-    strcpy(two.Natack2,at22);
-    strcpy(two.Natack3,at32);
-    strcpy(two.Natack4,at42);
-    two.atack1=20;
-    two.atack2=30;
-    two.atack3=40;
-    two.atack4=50;
+    //strcpy(two.Natack1,at12);
+    //strcpy(two.Natack2,at22);
+    //strcpy(two.Natack3,at32);
+    //strcpy(two.Natack4,at42);
+    //two.atack1=20;
+    //two.atack2=30;
+    //two.atack3=40;
+    //two.atack4=50;
 
     //Variaveis de Decisão
     int dec,dec2;
@@ -181,10 +175,10 @@ int main()
     puts( "\033[2J" );
     switch(dec){
     case 1:
-    menuBattle(one,two);
+    menuBattle(one,two,one_atk1,one_atk2,one_atk3,one_atk4);
     scanf("%d",&dec2);
-    nameATK(one,dec2);
-    atack(ptr1,ptr2,chooseATK(one,dec2));
+    nameATK(one,one_atk1,one_atk2,one_atk3,one_atk4,dec2);
+    atack(ptr1,ptr2,chooseATK(one_atk1,one_atk2,one_atk3,one_atk4,dec2));
     break;
     case 4:
     return 0;
@@ -194,8 +188,8 @@ int main()
     break;
     }
     dec2=rand() % 6;
-    nameATK(two,dec2);
-    atack(ptr2,ptr1,chooseATK(two,dec2));
+    //nameATK(two,dec2);
+    //atack(ptr2,ptr1,chooseATK(two,dec2));
     }
     puts( "\033[2J" );
     printf("####END GAME####");
