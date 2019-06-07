@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1559916345 source:/home/eric/battle/main.c
+1559923325 source:/home/eric/battle/main.c
 	<stdio.h>
 	<stdlib.h>
 

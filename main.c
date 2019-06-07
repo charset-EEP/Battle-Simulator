@@ -75,11 +75,51 @@ void menuBattle(monster one,monster two){
     printf("3-%s",one.Natack3);
     printf("\t 4-%s\n:",one.Natack4);
     }
+int chooseATK(monster one,int choose){
+    switch(choose){
+    case 1:
+    return one.atack1;
+    break;
+    case 2:
+    return one.atack2;
+    break;
+    case 3:
+    return one.atack3;
+    break;
+    case 4:
+    return one.atack4;
+    break;
+    default:
+    return one.atack;
+    break;
+    }
+    }
+void nameATK(monster one,int choose){
+    switch(choose){
+    case 1:
+    printf("%s used %s,  ",one.name,one.Natack1);
+    break;
+    case 2:
+    printf("%s used %s,  ",one.name,one.Natack2);
+    break;
+    case 3:
+    printf("%s used %s,  ",one.name,one.Natack3);
+    break;
+    case 4:
+    printf("%s used %s,  ",one.name,one.Natack4);
+    break;
+    default:
+    printf("%s used body,  ",one.name);
+    break;
+    }
+    }
 int main()
 {
+    printf("\n\n");
     int battle=1;
     int *ptr_battle=&battle;
 
+    //Pokemon 1
     monster one;
     char one_name[]="Charmander";
     strcpy(one.name,one_name);
@@ -99,6 +139,8 @@ int main()
     one.atack2=30;
     one.atack3=40;
     one.atack4=50;
+
+    //Pokemon 2
     monster two;
     char two_name[]="Bulbassaur";
     strcpy(two.name,two_name);
@@ -106,9 +148,24 @@ int main()
     two.atack=10;
     two.sp=50;
     monster *ptr2=&two;
+    char at12[]="Scrach";
+    char at22[]="Growl";
+    char at32[]="Vine Whipe";
+    char at42[]="Solarbean";
+    strcpy(two.Natack1,at12);
+    strcpy(two.Natack2,at22);
+    strcpy(two.Natack3,at32);
+    strcpy(two.Natack4,at42);
+    two.atack1=20;
+    two.atack2=30;
+    two.atack3=40;
+    two.atack4=50;
 
-    int dec,atac;
+    //Variaveis de Decisão
+    int dec,dec2;
 
+
+    //Menu de Batalha
     while(battle==1){
     menu(one,two,ptr_battle);
     scanf("%d",&dec);
@@ -116,33 +173,9 @@ int main()
     switch(dec){
     case 1:
     menuBattle(one,two);
-    scanf("%d",&atac);
-    switch(atac){
-    case 1:
-    atac=one.atack1;
-    printf("%s used %s,\t",one.name,one.Natack1);
-    atack(ptr1,ptr2,atac);
-    break;
-    case 2:
-    atac=one.atack2;
-    printf("%s used %s,\t",one.name,one.Natack2);
-    atack(ptr1,ptr2,atac);
-    break;
-    case 3:
-    atac=one.atack3;
-    printf("%s used %s,\t",one.name,one.Natack3);
-    atack(ptr1,ptr2,atac);
-    break;
-    case 4:
-    atac=one.atack4;
-    printf("%s used %s,\t",one.name,one.Natack4);
-    atack(ptr1,ptr2,atac);
-    break;
-    default:
-    atac=one.atack;
-    atack(ptr1,ptr2,atac);
-    break;
-    }
+    scanf("%d",&dec2);
+    nameATK(one,dec2);
+    atack(ptr1,ptr2,chooseATK(one,dec2));
     break;
     case 4:
     return 0;
@@ -151,7 +184,9 @@ int main()
     printf("You did nothing\n");
     break;
     }
-    atack(ptr2,ptr1,two.atack);
+    dec2=rand() % 6;
+    nameATK(two,dec2);
+    atack(ptr2,ptr1,chooseATK(two,dec2));
     }
     puts( "\033[2J" );
     printf("####END GAME####");
