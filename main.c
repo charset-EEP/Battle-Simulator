@@ -17,6 +17,15 @@ int atack4;
 char Natack4[30];
 }monster;
 
+typedef struct{
+int damage;
+char type[30];
+int usages;
+int extraTurns;
+int voidTurn;
+char efect[30];
+}atacks;
+
 void atack(monster *one,monster *two,int atak){
 (*one).atack=atak;
 if((*one).sp>0){
@@ -123,7 +132,7 @@ int main()
     monster one;
     char one_name[]="Charmander";
     strcpy(one.name,one_name);
-    one.life=100;
+    one.life=200;
     one.atack=10;
     one.sp=50;
     monster *ptr1=&one;
@@ -144,7 +153,7 @@ int main()
     monster two;
     char two_name[]="Bulbassaur";
     strcpy(two.name,two_name);
-    two.life=100;
+    two.life=200;
     two.atack=10;
     two.sp=50;
     monster *ptr2=&two;
