@@ -5,6 +5,11 @@ typedef struct
 {
     char name[30];
     int life;
+    char type1[30];
+    char type2[30];
+    char weak1[30];
+    char weak2[30];
+    char weak3[30];
 } monster;
 
 //Ataques
