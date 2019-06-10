@@ -1,5 +1,19 @@
 # depslib dependency file v1.0
-1559923325 source:/home/eric/battle/main.c
+1560171833 source:/home/eric/battle/main.c
+	<stdio.h>
+	<stdlib.h>
+	"infos.h"
+	"battle.c"
+	"menu.c"
+
+1560170998 /home/eric/battle/battle.h
+
+1560171481 /home/eric/battle/infos.h
+
+1560171659 /home/eric/battle/battle.c
+	<stdio.h>
+
+1560171724 /home/eric/battle/menu.c
 	<stdio.h>
 	<stdlib.h>
 
